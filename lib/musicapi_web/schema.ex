@@ -13,4 +13,12 @@ defmodule MusicapiWeb.Schema do
       resolve &MusicapiWeb.RecordsResolver.all_albums/3
     end
   end
+
+  mutation do
+    field :create_album, :album do
+      arg :name, non_null(:string)
+
+      resolve &MusicapiWeb.RecordsResolver.create_album/3
+    end
+  end
 end
