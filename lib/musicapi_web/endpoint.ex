@@ -7,6 +7,8 @@ defmodule MusicapiWeb.Endpoint do
   #
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
+  plug CORSPlug
+
   plug Plug.Static,
     at: "/", from: :musicapi, gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
