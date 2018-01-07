@@ -22,5 +22,11 @@ defmodule MusicapiWeb.Schema do
 
       resolve &MusicapiWeb.RecordsResolver.create_album/3
     end
+
+    field :complete_listen, :album do
+      arg :id, non_null(:id)
+
+      resolve &MusicapiWeb.RecordsResolver.complete_listen/3
+    end
   end
 end

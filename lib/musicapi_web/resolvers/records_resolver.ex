@@ -13,4 +13,13 @@ defmodule MusicapiWeb.RecordsResolver do
         {:error, "could not create link"}
     end
   end
+
+  def complete_listen(_root, %{id: id}, _info) do
+    album = Records.get_album!(id)
+    case Records.update_album(album, %{listened: true}) do
+      { :ok, album } -> {:ok, album}
+      _error ->
+        {:error, "could not complete"}
+    end
+  end
 end
