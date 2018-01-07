@@ -1,8 +1,8 @@
 defmodule MusicapiWeb.RecordsResolver do
   alias Musicapi.Records
 
-  def all_albums(_root, _args, _info) do
-    albums = Records.list_albums()
+  def all_albums(_root, args, _info) do
+    albums = Records.list_albums(args)
     {:ok, albums}
   end
 

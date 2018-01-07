@@ -17,7 +17,18 @@ defmodule Musicapi.Records do
       [%Album{}, ...]
 
   """
-  def list_albums do
+
+  def list_albums(%{listened: listened}) do
+    Album
+    |> where([al], al.listened == ^listened)
+    |> Repo.all
+  end
+
+  def list_albums(_) do
+    Repo.all(Album)
+  end
+
+  def list_albums() do
     Repo.all(Album)
   end
 

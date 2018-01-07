@@ -6,6 +6,7 @@ defmodule Musicapi.Records.Album do
 
   schema "albums" do
     field :name, :string
+    field :listened, :boolean, default: false
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule Musicapi.Records.Album do
   @doc false
   def changeset(%Album{} = album, attrs) do
     album
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :listened])
     |> validate_required([:name])
   end
 end

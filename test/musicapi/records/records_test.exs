@@ -1,3 +1,4 @@
+require IEx
 defmodule Musicapi.RecordsTest do
   use Musicapi.DataCase
 
@@ -19,9 +20,15 @@ defmodule Musicapi.RecordsTest do
       album
     end
 
-    test "list_albums/0 returns all albums" do
+    test "list_albums/1 with empty args returns all albums" do
       album = album_fixture()
-      assert Records.list_albums() == [album]
+      assert Records.list_albums(%{}) == [album]
+    end
+
+    test "list_albums/1 with filter returns filtered albums" do
+      album1 = album_fixture(listened: true)
+      _album2 = album_fixture(listened: false)
+      assert Records.list_albums(%{listened: true}) == [album1]
     end
 
     test "get_album!/1 returns the album with given id" do
